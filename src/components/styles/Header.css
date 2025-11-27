@@ -57,9 +57,9 @@ li a:hover{
     display: block;
     color: white;
     cursor: pointer;
-    position: relative;
-    z-index: 1001;
+    z-index: 2000;
     background-color: transparent;
+    font-size: 22px;
   }
 
   .open{
@@ -71,7 +71,6 @@ li a:hover{
     top: 0;
     left: 0;
     padding-top: 40px; 
-
   }
 
   .open ul{
@@ -89,6 +88,7 @@ li a:hover{
 
   #ouvert{
     color: black;
+    position: fixed;
   }
 }
 
