@@ -4,12 +4,16 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef(null);
-
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setOpen(false); 
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !(buttonRef.current && buttonRef.current.contains(event.target))
+      ) {
+        setOpen(false);
       }
     };
 
@@ -22,23 +26,32 @@ function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = open ? 'hidden' : prev || 'auto';
+    return () => {
+      document.body.style.overflow = prev || '';
+    };
+  }, [open]);
+
   return (
     <div>
-      <header ref={containerRef}>
+      <header>
         <button
+          ref={buttonRef}                 // <-- attache la ref ici
           className="btn"
           id={open ? "ouvert" : ""}
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen((s) => !s)} // utiliser fonctionnel pour éviter stale value
         >
           {open ? "✖" : "☰"}
         </button>
 
-        <nav className={open ? "open" : "nav"}>
+        <nav className={open ? "open" : "nav"} ref={menuRef}>
           <ul>
-            <li><Link to="/">Accueil</Link></li>
-            <li><Link to="/apropos">À propos</Link></li>
-            <li><Link to="/competences">Compétences</Link></li>
-            <li><Link to="/projets">Projets</Link></li>
+            <li><Link to="/" onClick={() => setOpen(false)}>Accueil</Link></li>
+            <li><Link to="/apropos" onClick={() => setOpen(false)}>À propos</Link></li>
+            <li><Link to="/competences" onClick={() => setOpen(false)}>Compétences</Link></li>
+            <li><Link to="/projets" onClick={() => setOpen(false)}>Projets</Link></li>
           </ul>
         </nav>
       </header>
@@ -49,3 +62,4 @@ function Header() {
 }
 
 export default Header;
+

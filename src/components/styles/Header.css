@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,86 +10,100 @@ header {
   padding: 1rem;
   border-bottom: 3px solid white;
   height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
 }
 
-nav ul{
+nav ul {
   list-style: none;
   display: flex;
   justify-content: flex-end;
   padding: 12px;
-  gap: 15px
+  gap: 15px;
 }
 
-
-li a{
+li a {
   text-decoration: none;
   color: inherit;
   display: inline-block;
-  transition: transform 0.2s ease; 
+  transition: transform 0.2s ease;
 }
 
-.header2{
+li a:hover {
+  transform: scale(1.1);
+}
+
+.header2 {
   background-color: #222;
   height: 80px;
 }
 
-li a:hover{
-  transform: scale(1.1);
-}
-
-.btn{
+.btn {
   display: none;
   border: none;
-  padding-left: 12px;
+  background: transparent;
 }
 
-@media(max-width: 700px){
-  header{
-    height: auto;
-    position: relative;
-  }
+@media (max-width: 700px) {
 
-  .nav ul{
+  nav ul {
     display: none;
   }
 
-  .btn{
+  .btn {
     display: block;
     color: white;
     cursor: pointer;
-    z-index: 2000;
-    background-color: transparent;
+    z-index: 4000;
     font-size: 22px;
+    top: 15px;
+    right: 15px;
   }
 
-  .open{
+  .open {
     background-color: #fff;
     position: fixed;
-    z-index: 1000;
+    z-index: 3000;
     width: 50%;
     height: 100vh;
     top: 0;
-    left: 0;
-    padding-top: 40px; 
+    right: 0;
+    padding-top: 100px;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.25);
+    transform: translateX(100%);
+    animation: slideInRight 0.35s forwards ease-out;
   }
 
-  .open ul{
-    display:flex;
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .open ul {
+    display: flex;
     flex-direction: column;
-    font-size: small;
+    font-size: 1.1rem;
     align-items: flex-start;
-    gap: 25px;
+    gap: 20px;
     padding-left: 25px;
   }
 
-  .open ul li a{
-    color: black
+  .open ul li a {
+    color: #111;
+    font-weight: bold;
   }
 
-  #ouvert{
+  #ouvert {
     color: black;
     position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 5000;
   }
 }
-
-
