@@ -66,7 +66,7 @@ li a:hover {
     background-color: #fff;
     position: fixed;
     z-index: 3000;
-    width: 50%;
+    width: 70%;
     height: 100vh;
     top: 0;
     right: 0;
@@ -74,6 +74,9 @@ li a:hover {
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.25);
     transform: translateX(100%);
     animation: slideInRight 0.35s forwards ease-out;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   @keyframes slideInRight {
