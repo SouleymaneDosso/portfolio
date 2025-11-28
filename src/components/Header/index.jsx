@@ -9,10 +9,10 @@ const slideInRight = keyframes`
 `;
 
 const HeaderWrapper = styled.header`
-  background-color: ${({ isDarkMode }) => (isDarkMode ? '#0D192B' : '#f4f4f4')};
-  color: ${({ isDarkMode }) => (isDarkMode ? 'white' : '#222')};
+  background-color: ${({ $isDark }) => ($isDark ? '#0D192B' : '#f4f4f4')};
+  color: ${({ $isDark }) => ($isDark ? 'white' : '#222')};
   padding: 1rem 2rem;
-  border-bottom: 3px solid ${({ isDarkMode }) => (isDarkMode ? 'white' : '#222')};
+  border-bottom: 3px solid ${({ $isDark }) => ($isDark ? 'white' : '#222')};
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -31,7 +31,7 @@ const Nav = styled.nav`
 
   li a {
     text-decoration: none;
-    color: ${({ isDarkMode }) => (isDarkMode ? 'white' : '#222')};
+    color: ${({ $isDark }) => ($isDark ? 'white' : '#222')};
     transition: transform 0.2s ease;
     display: inline-block;
   }
@@ -46,7 +46,7 @@ const Nav = styled.nav`
     right: 0;
     width: 70%;
     height: 100vh;
-    background-color: ${({ isDarkMode }) => (isDarkMode ? '#0D192B' : '#fff')};
+    background-color: ${({ $isDark }) => ($isDark ? '#0D192B' : '#fff')};
     padding-top: 80px;
     display: ${({ open }) => (open ? 'flex' : 'none')};
     animation: ${slideInRight} 0.35s forwards ease-out;
@@ -61,7 +61,7 @@ const Nav = styled.nav`
     }
 
     li a {
-      color: ${({ isDarkMode }) => (isDarkMode ? 'white' : '#111')};
+      color: ${({ $isDark }) => ($isDark ? 'white' : '#111')};
       font-weight: bold;
       font-size: 1.1rem;
     }
@@ -141,7 +141,7 @@ function Header() {
   }, [open]);
 
   return (
-    <HeaderWrapper isDarkMode={isDarkMode}>
+    <HeaderWrapper $isDark={isDarkMode}>
       <MenuButton
         ref={buttonRef}
         color={color}
@@ -150,12 +150,10 @@ function Header() {
         {open ? '✖' : '☰'}
       </MenuButton>
 
-      <Nav ref={menuRef} isDarkMode={isDarkMode} open={open}>
+      <Nav ref={menuRef} $isDark={isDarkMode} open={open}>
         <ul>
           <li><Link to="/" onClick={() => setOpen(false)}>Accueil</Link></li>
-          <li><Link to="/apropos" onClick={() => setOpen(false)}>À propos</Link></li>
-          <li><Link to="/competences" onClick={() => setOpen(false)}>Compétences</Link></li>
-          <li><Link to="/projets" onClick={() => setOpen(false)}>Projets</Link></li>
+          <li><Link to="/contacts" onClick={() => setOpen(false)}>Contacts</Link></li>
         </ul>
       </Nav>
 
@@ -185,3 +183,4 @@ function Header() {
 }
 
 export default Header;
+

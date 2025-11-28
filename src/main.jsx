@@ -5,9 +5,9 @@ import Accueil from './components/Accueil';
 import Header from './components/Header';
 import Erreur from  './components/Erreur';
 import {ThemeToggle} from './pages/context'
-
+import Contacts from './components/Contacts'
 import GlobalStyle from "./pages/utils/GlobalStyle.jsx";
-
+import Footer from './components/Footer'
 
 
 
@@ -19,8 +19,10 @@ createRoot(document.getElementById('root')).render(
       <Header />
       <Routes>
         <Route path="/" element={<Accueil />}/>
+        <Route path="/contacts" element={<Contacts />}/>
         <Route path="*" element={<Erreur />} />
       </Routes>
+      < Footer />
       </ThemeToggle>
     </Router>
   </StrictMode>
