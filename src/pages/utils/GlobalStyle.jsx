@@ -9,6 +9,9 @@ const StyledGlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+    html {
+  scroll-behavior: smooth;
+}
 
   body {
     background: ${({ isDarkMode }) =>
