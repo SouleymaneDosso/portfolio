@@ -20,7 +20,6 @@ const fadeUp = keyframes`
 `;
 
 const HeroSection = styled.section`
-  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,9 +29,15 @@ const HeroSection = styled.section`
   animation: ${fadeUp} 1s ease-out;
   background-color: ${({ $isDark }) => ($isDark ? "#0D192B" : "#f4f4f4")};
 
-  h1 { color: ${({ $isDark }) => ($isDark ? "white" : "#222")}; }
-  h2 { color: ${({ $isDark }) => ($isDark ? "#00bfff" : "#0077cc")}; }
-  p { color: ${({ $isDark }) => ($isDark ? "#ccc" : "#333")}; }
+  h1 {
+    color: ${({ $isDark }) => ($isDark ? "white" : "#222")};
+  }
+  h2 {
+    color: ${({ $isDark }) => ($isDark ? "#00bfff" : "#0077cc")};
+  }
+  p {
+    color: ${({ $isDark }) => ($isDark ? "#ccc" : "#333")};
+  }
 `;
 
 const Section = styled.section`
@@ -51,7 +56,9 @@ const Button = styled(Link).withConfig({
   font-weight: bold;
   border-radius: 5px;
   text-decoration: none;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.3s ease;
 
   &:hover {
     transform: scale(1.05);
@@ -85,7 +92,9 @@ const Aside = styled.aside`
     }
   }
 
-  @media (max-width: 768px) { display: none; }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const MobileAsideButton = styled.button`
@@ -103,11 +112,15 @@ const MobileAsideButton = styled.button`
   z-index: 1000;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
-  &:hover { transform: scale(1.1); }
+  &:hover {
+    transform: scale(1.1);
+  }
 
-  @media (max-width: 768px) { display: flex; }
+  @media (max-width: 768px) {
+    display: flex;
+  }
 `;
 
 const MobileAsidePanel = styled.div`
@@ -154,10 +167,12 @@ const ScrollTopButton = styled.button`
   display: ${({ $visible }) => ($visible ? "flex" : "none")};
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 
-  &:hover { transform: scale(1.1); }
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const ProjetsGrid = styled.div`
@@ -174,7 +189,10 @@ const ProjetCardWrapper = styled.div`
   padding: 1.5rem;
   box-shadow: ${({ $isDark }) =>
     $isDark ? "0 4px 12px rgba(0,0,0,0.6)" : "0 4px 12px rgba(0,0,0,0.1)"};
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.6s ease;
 `;
 
 const ProjetLinks = styled.div`
@@ -184,7 +202,9 @@ const ProjetLinks = styled.div`
   a {
     color: ${({ $isDark }) => ($isDark ? "white" : "#222")};
     font-size: 1.2rem;
-    transition: transform 0.2s ease, color 0.3s ease;
+    transition:
+      transform 0.2s ease,
+      color 0.3s ease;
 
     &:hover {
       transform: scale(1.2);
@@ -255,6 +275,36 @@ const BarProgress = styled.div`
   border-radius: 12px;
   transition: width 0.9s ease;
 `;
+const Avatar = styled.img`
+  width:50%;
+  heigth: 50%;
+  border-radius: 50%;
+  
+`;
+const Avatarwrapper = styled.div`
+width: 100%;
+heigth: 100%;
+ display: flex;
+ justify-content: center;
+ padding: 4rem 2rem;
+ 
+`;
+const Menumodal = styled.div`
+background: black;
+position: fixed;
+inset: 0;
+width: 100vw;
+heigth: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 100;
+`;
+
+const Imagemodal = styled.img`
+width: 100%;
+heigth: 100%;
+`;
 
 function AnimateOnScroll({ children }) {
   const ref = useRef();
@@ -263,7 +313,7 @@ function AnimateOnScroll({ children }) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -312,6 +362,23 @@ function Accueil() {
 
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mobileAsideOpen, setMobileAsideOpen] = useState(false);
+  const [modal , setModal]= useState(null)
+  const [image , setImage]= useState(null)
+
+
+//  debutmodal
+
+const ouvrirmodal = (image)=>{
+setImage(image);
+setModal(true)
+}
+
+
+const fermermodal = ()=>{
+  setModal(null)
+}
+
+// fin modal
 
   const handleScroll = () => {
     setShowScrollTop(window.scrollY > 300);
@@ -333,43 +400,99 @@ function Accueil() {
     },
     {
       title: "Projet 2",
-      description: "Projet openclassrooms (Apprentissage)",
-      githubLink: "https://github.com/SouleymaneDosso/projet-openclassrooms-agence",
-      demoLink: "#",
+      description: "application web de rencontre amoureuse (React, Node.js, Express, MongoDB)",
+      githubLink:
+        "https://github.com/SouleymaneDosso/projet-openclassrooms-agence",
+      demoLink: "https://rencontre-amoureuse.vercel.app/connexion",
     },
-    { title: "Projet 3", description: "Site ecommerce", githubLink: "#", demoLink: "#" },
+    {
+      title: "Projet 3",
+      description: "Site ecommerce complet (React, Node.js, Express, MongoDB)",
+      githubLink: "https://github.com/SouleymaneDosso/Ecommer-NUMA",
+      demoLink: "https://www.numa.luxe/",
+    },
   ];
 
   return (
     <>
+      <Avatarwrapper>
+        <Avatar src="public/dosso.jpeg"  onClick={()=>ouvrirmodal("public/dosso.jpeg")}/>
+      </Avatarwrapper>
+
+      
+      {modal &&
+
+        <Menumodal onClick={()=>fermermodal()}>
+        <Imagemodal src={image} alt="image agrandie" onClick={()=>fermermodal()}/>
+     
+      </Menumodal>
+      
+      }
+
       <HeroSection $isDark={isDarkMode}>
         <h1>Bienvenue sur mon portfolio</h1>
         <h2>Dosso Souleymane</h2>
-        <p>Développeur backend en formation continue... Découvrez mes projets et compétences ci-dessous.</p>
+        <p>
+          Développeur fullstack mobile & web en formation continue... Découvrez mes projets et
+          compétences ci-dessous.
+        </p>
         <div>
-          <Button as="a" href="#projets" primary>Voir mes projets</Button>
+          <Button as="a" href="#projets" primary>
+            Voir mes projets
+          </Button>
           <Button to="/contacts">Me contacter</Button>
         </div>
       </HeroSection>
 
       <Aside $isDark={isDarkMode}>
-        <a href="https://github.com/SouleymaneDosso" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-        <a href="#" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-        <a href="#" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+        <a
+          href="https://github.com/SouleymaneDosso"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaGithub />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <FaTwitter />
+        </a>
       </Aside>
 
-      <MobileAsideButton onClick={() => setMobileAsideOpen(!mobileAsideOpen)}><FaShareAlt /></MobileAsideButton>
+      <MobileAsideButton onClick={() => setMobileAsideOpen(!mobileAsideOpen)}>
+        <FaShareAlt />
+      </MobileAsideButton>
       <MobileAsidePanel $isDark={isDarkMode} $open={mobileAsideOpen}>
-        <a href="https://github.com/SouleymaneDosso" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-        <a href="#" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-        <a href="#" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+        <a
+          href="https://github.com/SouleymaneDosso"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaGithub />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <FaTwitter />
+        </a>
       </MobileAsidePanel>
 
       <Section id="apropos">
         <Title $isDark={isDarkMode}>À propos</Title>
         <AnimateOnScroll>
-          <p style={{ maxWidth: "700px", margin: "0 auto", color: isDarkMode ? "#ccc" : "#333" }}>
-            Je suis Dosso Souleymane, développeur backend passionné, actuellement en formation continue. J'aime créer des projets utiles et bien structurés, tout en apprenant constamment les nouvelles technologies.
+          <p
+            style={{
+              maxWidth: "700px",
+              margin: "0 auto",
+              color: isDarkMode ? "#ccc" : "#333",
+            }}
+          >
+            Je suis Dosso Souleymane, développeur fullstack , web & mobile. Passionné,
+            actuellement en formation continue. J'aime créer des projets utiles
+            et bien structurés, tout en apprenant constamment les nouvelles
+            technologies.
           </p>
         </AnimateOnScroll>
       </Section>
@@ -378,7 +501,9 @@ function Accueil() {
         <Title $isDark={isDarkMode}>Mes Projets</Title>
         <p>Voici quelques-uns de mes projets récents.</p>
         <ProjetsGrid>
-          {projets.map((p, i) => (<ProjetCard key={i} {...p} $isDark={isDarkMode} />))}
+          {projets.map((p, i) => (
+            <ProjetCard key={i} {...p} $isDark={isDarkMode} />
+          ))}
         </ProjetsGrid>
       </Section>
 
@@ -386,16 +511,40 @@ function Accueil() {
         <Title $isDark={isDarkMode}>Mes Compétences</Title>
         <CardsGrid>
           {[
-            { title: "Frontend", icon: <FaTools />, skills: [{ label: "HTML", level: 100 }, { label: "CSS", level: 100 }, { label: "JS", level: 80 }, { label: "React", level: 80 }] },
-            { title: "Backend", icon: <FaTools />, skills: [{ label: "Appels API", level: 85 }] },
-            { title: "Outils & Méthodes", icon: <FaGitAlt />, skills: [{ label: "Git/GitHub", level: 90 }, { label: "Postman", level: 85 }] }
+            {
+              title: "Frontend",
+              icon: <FaTools />,
+              skills: [
+                { label: "HTML", level: 100 },
+                { label: "CSS", level: 100 },
+                { label: "JS", level: 80 },
+                { label: "React", level: 80 },
+              ],
+            },
+            {
+              title: "Backend",
+              icon: <FaTools />,
+              skills: [{ label: "Appels API", level: 85 }],
+            },
+            {
+              title: "Outils & Méthodes",
+              icon: <FaGitAlt />,
+              skills: [
+                { label: "Git/GitHub", level: 90 },
+                { label: "Postman", level: 85 },
+              ],
+            },
           ].map((c, idx) => (
             <AnimateOnScroll key={idx}>
               <Card $isDark={isDarkMode}>
-                <CardTitle $isDark={isDarkMode}>{c.icon} {c.title}</CardTitle>
+                <CardTitle $isDark={isDarkMode}>
+                  {c.icon} {c.title}
+                </CardTitle>
                 {c.skills.map((s, i) => (
                   <SkillItem key={i}>
-                    <SkillLabel $isDark={isDarkMode}>{s.label} — {s.level}%</SkillLabel>
+                    <SkillLabel $isDark={isDarkMode}>
+                      {s.label} — {s.level}%
+                    </SkillLabel>
                     <BarBackground $isDark={isDarkMode}>
                       <BarProgress $isDark={isDarkMode} $level={s.level} />
                     </BarBackground>
@@ -407,7 +556,9 @@ function Accueil() {
         </CardsGrid>
       </CardWrapper>
 
-      <ScrollTopButton $visible={showScrollTop} onClick={scrollToTop}><FaArrowUp /></ScrollTopButton>
+      <ScrollTopButton $visible={showScrollTop} onClick={scrollToTop}>
+        <FaArrowUp />
+      </ScrollTopButton>
     </>
   );
 }
