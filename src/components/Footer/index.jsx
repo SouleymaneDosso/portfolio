@@ -265,7 +265,7 @@ function Footer() {
             </h2>
 
             <p>
-              Développeur web passionné par la création d'interfaces modernes,
+              Développeur web & mobile. Passionné par la création d'interfaces modernes,
               performantes et pensées pour offrir une excellente expérience
               utilisateur.
             </p>
@@ -340,8 +340,7 @@ function Footer() {
 
         <Bottom $isDark={isDark}>
           <p>
-            © {new Date().getFullYear()} Dosso Souleymane — Tous droits
-            réservés.
+            © {new Date().getFullYear()} Dosso Souleymane — developpé un artisan du web & mobile. Tous droits réservés.
           </p>
 
           <BackToTop
