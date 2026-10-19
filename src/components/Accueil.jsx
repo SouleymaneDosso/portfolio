@@ -1016,8 +1016,13 @@ function Accueil() {
       title: "Frontend",
       items: [
         ["HTML / CSS", 90],
-        ["JavaScript", 80],
-        ["React", 80],
+        ["JavaScript", 85],
+        ["React", 85],
+        ["React Native", 70],
+        ["typescript", 70],
+        ["mongodb", 85],
+        ["express", 85],
+        
       ],
     },
 
@@ -1025,9 +1030,9 @@ function Accueil() {
       icon: <FaDatabase />,
       title: "Backend & API",
       items: [
-        ["API REST", 80],
-        ["Node.js", 65],
-        ["Express", 65],
+        ["API REST", 85],
+        ["Node.js", 85],
+        ["Express", 85],
       ],
     },
 
@@ -1036,7 +1041,7 @@ function Accueil() {
       title: "Outils",
       items: [
         ["Git / GitHub", 90],
-        ["Postman", 80],
+        ["Postman", 85],
         ["Développement responsive", 85],
       ],
     },
