@@ -1069,7 +1069,7 @@ function Accueil() {
                 Développeur web passionné, actuellement en formation
                 continue. Je conçois des applications modernes,
                 responsives et orientées utilisateur avec React,
-                JavaScript et les technologies du web.
+                JavaScript react native et les technologies du web (mongodb, express, node.js).
               </HeroSubtitle>
 
               <HeroLocation $isDark={isDark}>
@@ -1196,7 +1196,7 @@ function Accueil() {
 
             <AboutText $isDark={isDark}>
               Je suis <strong>Dosso Souleymane</strong>, développeur
-              web passionné par la création d'interfaces modernes
+              web et mobile passionné par la création d'interfaces modernes
               et d'applications utiles. Mon parcours est basé sur
               l'apprentissage continu, la pratique et la réalisation
               de projets concrets.
@@ -1205,7 +1205,7 @@ function Accueil() {
               <br />
 
               Je travaille principalement avec les technologies
-              JavaScript et React et je développe progressivement
+              JavaScript, React et React Native et je développe progressivement
               mes compétences dans l'écosystème mobile. Mon objectif
               est de rejoindre une équipe dans laquelle je pourrai
               continuer à apprendre, contribuer aux projets et
@@ -1335,9 +1335,9 @@ function Accueil() {
                     <SkillTop $isDark={isDark}>
                       <span>{name}</span>
                       <small>
-                        {level >= 85
+                        {level >= 90
                           ? "Très à l'aise"
-                          : level >= 70
+                          : level >= 85
                           ? "Bonne maîtrise"
                           : "En progression"}
                       </small>
